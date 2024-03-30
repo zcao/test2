@@ -27,7 +27,7 @@ pipeline{
 
         stage('Test2'){
             steps{
-                sh 'curl http://host.docker.internal:3000/param?query=demo |jq' 
+                sh 'curl http://10.37.129.2:3000/param?query=demo |jq' 
             }
         }
     }
