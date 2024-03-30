@@ -26,7 +26,7 @@ pipeline{
             }
         }
 
-        stage('Test'){
+        stage('Test2'){
             steps{
                 sh 'curl http://localhost:3000/param?query=demo |jq' 
             }
