@@ -1,0 +1,20 @@
+name: RG_TEST2
+on:
+  workflow_dispatch:
+    inputs:
+      BranchName:
+        description: 'Branch Name'
+        required: true
+        default: 'develop'
+
+jobs:
+  my-job:
+    runs-on: RG_Host
+    steps:
+
+      - name: Run a script on action host
+        run: C:\_Shared\GithubActionRG\test2.ps1
+        env:
+          github_ref: ${{ github.ref }}
+          github_run_id: ${{github.run_id }}
+          branch_name: ${{ github.event.inputs.BranchName }}
