@@ -78,10 +78,9 @@ class Build : NukeBuild
         {  
              Console.WriteLine($"Building...{Solution.Name} in {RootDirectory} {Configuration}");
 
-            DotNetTasks.DotNetBuild();
-            MSBuildTasks.MSBuild(s => s
-                .SetTargetPath(Solution)
-                .SetConfiguration(Configuration.Debug));
+            DotNetTasks.DotNetBuild(s => s
+                .SetConfiguration(Configuration));
+
          
         });
     Target Test => _ => _
