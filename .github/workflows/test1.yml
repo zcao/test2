@@ -33,6 +33,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
       - name: Grant execute permission for build.sh
         run: chmod +x build.sh
-  
       - name: 'Run: Test'
-        run: ./build.sh Test
+        run: ./build.cmd Test
+        env:
+          MySecret: ${{ secrets.MY_SECRET }}

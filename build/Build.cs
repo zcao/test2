@@ -20,7 +20,8 @@ using System.Diagnostics;
 using Nuke.Common.CI.GitHubActions;
 [GitHubActions("test1", GitHubActionsImage.UbuntuLatest, 
 On = new[] { GitHubActionsTrigger.Push }, 
-InvokedTargets = new[] { nameof(Test) })]
+InvokedTargets = new[] { nameof(Test) },
+ImportSecrets = new[] { "MySecret" })]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
