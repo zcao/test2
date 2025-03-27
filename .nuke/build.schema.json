@@ -24,8 +24,10 @@
     "ExecutableTarget": {
       "type": "string",
       "enum": [
+        "BuildAndPushDocker",
         "Clean",
         "Compile",
+        "DockerLogin2",
         "Publish",
         "Restore",
         "Test"
@@ -109,6 +111,14 @@
             "Debug",
             "Release"
           ]
+        },
+        "DockerPassword": {
+          "type": "string",
+          "description": "Docker Hub password"
+        },
+        "DockerUsername": {
+          "type": "string",
+          "description": "Docker Hub username"
         },
         "MySecret": {
           "type": "string",

@@ -37,3 +37,8 @@ jobs:
         run: ./build.sh Test
         env:
           MySecret: ${{ secrets.MY_SECRET }}
+      - name: 'Publish: artifacts'
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          path: artifacts

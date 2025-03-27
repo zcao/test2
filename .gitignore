@@ -359,3 +359,4 @@ k8s/*/.local/
 k8s/*/values.yaml
 
 docker/*/.local/
+/out

@@ -1,4 +1,7 @@
 {
   "$schema": "build.schema.json",
-  "Solution": "ConsoleApp1.sln"
+  "Solution": "ConsoleApp1.sln",
+   "DockerUsername":"ohyesboy",
+   "Configuration":"Debug"
+  // "DockerPassword":"XG^&gc=EuuE5Hcd"
 }
