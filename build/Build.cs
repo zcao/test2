@@ -29,6 +29,9 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
+    [Parameter("Docker user")]
+    readonly string MySecret;
+
     public static int Main () => Execute<Build>(x => x.Compile);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
@@ -38,14 +41,12 @@ class Build : NukeBuild
 
     readonly Solution Solution;
 
-    AzurePipelines AzurePipelines => AzurePipelines.Instance;
-
-    readonly MinVer MinVer;
 
     Target Clean => _ => _
         .Before(Restore)
         .Executes(() =>
         {
+        
             Console.WriteLine("Cleaning...");
             DotNetTasks.DotNetClean();
         });
@@ -63,7 +64,7 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {  
-             Console.WriteLine($"Building...{Solution.Name} in {RootDirectory} {Configuration}MinVer{MinVer}");
+             Console.WriteLine($"Building...{Solution.Name} in {RootDirectory} {Configuration}");
 
             DotNetTasks.DotNetBuild();
             MSBuildTasks.MSBuild(s => s
@@ -75,19 +76,15 @@ class Build : NukeBuild
         // .DependsOn(Compile)
         .Executes(() =>
         {
-            Console.WriteLine("Running tests...");
-            DotNetTasks.DotNetTest(s => s
-                .SetProjectFile("AAAA")
-                .SetFilter("TestCategory=PB_TEST")
-                .SetLoggers("nunit;LogFilePath=../_Reports/results.xml")
-                .SetConfiguration(Configuration.Debug));
+            Console.WriteLine($"Running {MySecret}...");
+
         });
         
     Target Publish => _ => _
         .DependsOn(Restore)
         .Executes(() =>
         {
-            Console.WriteLine($"Building...{Solution.Name} in {RootDirectory} {Configuration} MinVer{MinVer}");
+            Console.WriteLine($"Building...{Solution.Name} in {RootDirectory} {Configuration} ");
             var debugFolder = RootDirectory/"ConsoleApp1" / "bin" / "Debug";
             var zipFile = RootDirectory / "debug.zip";
             if (File.Exists(zipFile))
