@@ -31,5 +31,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
+      - name: Grant execute permission for build.sh
+        run: chmod +x build.sh
+  
       - name: 'Run: Test'
         run: ./build.sh Test
