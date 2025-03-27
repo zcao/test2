@@ -18,7 +18,9 @@ using Nuke.Common.Tools.MinVer;
 using Nuke.Common.Tools.DotNet;
 using System.Diagnostics;
 using Nuke.Common.CI.GitHubActions;
-[GitHubActions("test1", GitHubActionsImage.UbuntuLatest, On = new[] { GitHubActionsTrigger.Push }, InvokedTargets = new[] { nameof(Test) })]
+[GitHubActions("test1", GitHubActionsImage.UbuntuLatest, 
+On = new[] { GitHubActionsTrigger.Push }, 
+InvokedTargets = new[] { nameof(Test) })]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
